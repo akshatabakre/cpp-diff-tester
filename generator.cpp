@@ -3,11 +3,32 @@ using namespace std;
 
 int main() {
     srand(time(0));
+    ifstream fin("constraints.txt");
 
-    int n = rand() % 10 + 1;
+    string var;
+    int n_min, n_max;
+    fin >> var >> n_min >> n_max;
+
+    int n;
+    int mode = rand() % 5;
+
+    if(mode == 0) n = n_min;
+    else if(mode == 1) n = n_max;
+    else n = rand() % (n_max - n_min + 1) + n_min;
+
+    string arr, size_var;
+    int a_min, a_max;
+    fin >> arr >> size_var >> a_min >> a_max;
+
     cout << n << endl;
-    for(int i=0;i<n;i++){
-        int x = rand() % 20 - 10;
+
+    for(int i = 0; i < n; i++) {
+        int x;
+        if(mode == 2) x = 0;
+        else if(mode == 3) x = a_min;
+        else if(mode == 4) x = a_max;
+        else x = rand() % (a_max - a_min + 1) + a_min;
+
         cout << x << " ";
     }
     cout << endl;
