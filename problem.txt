@@ -1,0 +1,10 @@
+Given an array of n integers, find the maximum subarray sum.
+
+Input:
+The first line contains T, the number of test cases.
+For each test case:
+An integer n
+An array of n integers
+
+Output:
+For each test case, print the maximum subarray sum.
