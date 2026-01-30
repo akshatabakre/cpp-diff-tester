@@ -10,7 +10,12 @@ def run(cmd, input_data, timeout=1):
             text=True,
             timeout=timeout
         )
+
+        if p.returncode != 0:
+            return "CRASH", False
+
         return p.stdout.strip(), False
+
     except subprocess.TimeoutExpired:
         return "TIMEOUT", True
 
@@ -21,21 +26,32 @@ subprocess.run(["g++", "generator.cpp", "-o", "gen"])
 for i in range(1000):
     input_data, _ = run(["./gen"], "", 1)
 
-    out1, t1 = run(["./brute"], input_data, 1)
-    out2, t2 = run(["./optimal"], input_data, 1)
+    out1, _ = run(["./brute"], input_data, 1)
+    out2, _ = run(["./optimal"], input_data, 1)
 
-    if t1 or t2:
+    if out1 == "CRASH" or out2 == "CRASH":
+        print("Crash detected!")
+        print("Failing test case saved.")
+
+        with open("testcases/crash.txt", "w") as f:
+            f.write(input_data)
+        break
+
+    if out1 == "TIMEOUT" or out2 == "TIMEOUT":
         print("Timeout detected!")
-        print("Input:")
-        print(input_data)
+        print("Failing test case saved.")
+
+        with open("testcases/timeout.txt", "w") as f:
+            f.write(input_data)
         break
 
     if out1 != out2:
-        print("Mismatch found!")
-        print("Input:")
-        print(input_data)
-        print("Brute:", out1)
-        print("Optimal:", out2)
+        print("Wrong answer detected!")
+        print("Failing test case saved.")
+
+        with open("testcases/wrong_answer.txt", "w") as f:
+            f.write(input_data)
         break
+
 else:
     print("All tests passed")
