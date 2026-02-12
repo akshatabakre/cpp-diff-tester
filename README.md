@@ -115,21 +115,16 @@ This significantly improves debugging efficiency.
 
 ## 🧠 Architecture
 
-constraints.txt
-↓
-generator.cpp
-↓
-Random Valid Input
-↓
-brute.cpp optimal.cpp
-↓ ↓
-Outputs Compared
-↓
-Failure Classified
-↓
-Testcase Minimized
-↓
-Saved to testcases/
+The system follows a structured differential testing pipeline:
+
+1. `constraints.txt` defines input rules  
+2. `generator.cpp` produces valid random inputs  
+3. `brute.cpp` and `optimal.cpp` are compiled  
+4. Both programs are executed on the same input  
+5. Outputs are compared  
+6. Failures are classified (Wrong Answer / Crash / Timeout)  
+7. The failing input is minimized  
+8. Final minimized testcase is saved to `testcases/`
 
 
 ---
@@ -137,13 +132,12 @@ Saved to testcases/
 ## 📂 Project Structure
 
 cpp-diff-tester/
-│
 ├── brute.cpp # Correct but slow implementation
 ├── optimal.cpp # Optimized implementation under test
 ├── generator.cpp # Constraint-driven input generator
-├── runner.py # Orchestrates compilation, execution & comparison
+├── runner.py # Handles compilation, execution & comparison
 ├── constraints.txt # Input configuration
-├── testcases/ # Stores failing inputs
+├── testcases/ # Stores minimized failing inputs
 └── README.md
 
 
