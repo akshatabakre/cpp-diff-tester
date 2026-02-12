@@ -19,7 +19,7 @@ int main() {
         for(int x : a){
             cur += x;
             best = max(best, cur);
-            if(cur < 0) cur = 0;
+            // if(cur < 0) cur = 0;
         }
         cout << best << endl;
     }
