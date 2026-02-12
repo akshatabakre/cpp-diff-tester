@@ -131,14 +131,16 @@ The system follows a structured differential testing pipeline:
 
 ## 📂 Project Structure
 
+```text
 cpp-diff-tester/
-├── brute.cpp # Correct but slow implementation
-├── optimal.cpp # Optimized implementation under test
-├── generator.cpp # Constraint-driven input generator
-├── runner.py # Handles compilation, execution & comparison
-├── constraints.txt # Input configuration
-├── testcases/ # Stores minimized failing inputs
+├── brute.cpp        # Correct but slow implementation
+├── optimal.cpp      # Optimized implementation under test
+├── generator.cpp    # Constraint-driven input generator
+├── runner.py        # Handles compilation, execution & comparison
+├── constraints.txt  # Input configuration
+├── testcases/       # Stores minimized failing inputs
 └── README.md
+```
 
 
 ---
