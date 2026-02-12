@@ -44,11 +44,11 @@ This mirrors real-world testing techniques such as differential testing and fuzz
 Test cases are generated using configurable constraints defined in `constraints.txt`.
 
 Example:
-
+```text
 T 1 5
 n 1 10
 array n -10 10
-
+```
 
 This ensures:
 - Inputs follow valid format
@@ -60,11 +60,13 @@ This ensures:
 
 Supports input format:
 
+```text
 T
 n
 array
 n
 array
+```
 ...
 
 
